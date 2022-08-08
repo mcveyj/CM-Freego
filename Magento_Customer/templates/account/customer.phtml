@@ -1,0 +1,76 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var Magento\Customer\Block\Account\Customer $block */
+?>
+<?php
+$helper = $this->helper('Solwin\Cpanel\Helper\Data');
+$showsocial = $helper->getShowsocialicons();
+
+$baseUrl = $helper->getBaseUrl();
+$mediaurl = $helper->getMediaUrl() . 'social/';
+$f_logo = $helper->getFooterlogo();
+$footer_logo = $mediaurl . $helper->getFooterlogo();
+$helper = $this->helper('Solwin\Cpanel\Helper\Data');
+$mediasocialurl = $helper->getMediaUrl() . 'social/';
+$newsletter_title = $helper->getFooternewslettertitle();
+$newsletter_text = $helper->getFooternewslettertext();
+$newsletter_show = $helper->getShowfooternewsletter();
+?>
+<?php if($block->customerLoggedIn()): ?>
+    <li class="customer-welcome">
+        <span class="customer-name"
+              role="link"
+              tabindex="0"
+              data-mage-init='{"dropdown":{}}'
+              data-toggle="dropdown"
+              data-trigger-keypress-button="true"
+              data-bind="scope: 'customer'">
+            <button type="button"
+                    class="action switch"
+                    tabindex="-1"
+                    data-action="customer-menu-toggle">
+                <span><?= $block->escapeHtml(__('Change')) ?></span>
+            </button>
+        </span>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+        <?php if($block->getChildHtml()):?>
+        <div class="customer-menu" data-target="dropdown">
+            <?= $block->getChildHtml() ?>
+        </div>
+        <?php endif; ?>
+    </li>
+    <li>
+        <a href="<?php echo $baseUrl; ?>customer/account/">My Account</a>
+    </li>
+    <li>
+
+
+<?php
+$helper = $this->helper('\Magento\Checkout\Helper\Cart');
+
+?>
+
+
+        <a href="<?php echo $baseUrl; ?>checkout/cart/">My Cart (<?php echo $helper->getSummaryCount(); ?> items)</a>
+    </li>
+    <li>
+        <a href="<?php echo $baseUrl; ?>checkout">Checkout</a>
+    </li>
+<?php endif; ?>

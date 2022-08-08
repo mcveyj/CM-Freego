@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="copyright">
+    <div class="page-main cback">
+    	<div class="copyright-text">
+    		<span><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></span>	
+    	</div>
+    	<div class="btm-foot-menu">
+    		<ul>
+                 <?php
+        $helper = $this->helper('Solwin\Cpanel\Helper\Data');
+        $baseUrl = $helper->getBaseUrl();
+
+?>
+    			<li><a href="<?php echo $baseUrl; ?>catalogsearch/advanced/">Advanced Search</a></li>
+    			<li><a href="<?php echo $baseUrl; ?>contact/">Contact Us</a></li>
+    		</ul>
+    	</div>        
+    </div>
+</div>

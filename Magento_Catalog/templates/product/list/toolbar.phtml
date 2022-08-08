@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+<!-- for Toolbar top Title -->
+
+<?php
+ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+  //echo $category->getId();
+   //echo $this->getRequest()->getControllerName();
+if($this->getRequest()->getControllerName()=='product') {
+   echo '<div class="right-list-title">';
+    echo '<h1>'.$category->getName().'</h1>';
+    echo '</div>'; 
+} 
+if($this->getRequest()->getControllerName()=='category') {
+    echo '<div class="right-list-title">';
+    echo '<h1>'.$category->getName().'</h1>';
+    echo '</div>';
+}
+    
+?>
+
+<!-- end toolbar top title end1 -->
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="toolbar toolbar-products " data-mage-init='<?= /* @escapeNotVerified */ $block->getWidgetOptionsJson() ?>'>
+        <?php if ($block->isExpanded()): ?>
+            <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+        <?php endif; ?>
+        <?php if ($block->isExpanded()): ?>
+            <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+        <?php endif; ?>
+
+        <?php //include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
+        <?= $block->getPagerHtml() ?>
+
+        
+
+        
+    </div>
+<?php endif ?>
