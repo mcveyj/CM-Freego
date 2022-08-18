@@ -10,8 +10,6 @@
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.sku" destination="product.info.main" after="page.main.title" />
         <move element="product.info.overview" destination="product.info.main" after="product.info.sku" />
-        <move element="product.info.stock.sku" destination="product.info.form.content" before="product.info.addtocart" />
-        <move element="product.info.price" destination="product.info.form.content" before="product.info.addtocart"/>
-        
+        <move element="product.info.stock.sku" destination="product.info.form.content" before="product.info.addtocart" />        
     </body>
 </page>
